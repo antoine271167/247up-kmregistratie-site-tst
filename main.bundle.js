@@ -373,6 +373,7 @@ var RitAppFormComponent = (function () {
     }
     RitAppFormComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.isRequesting = true;
         __WEBPACK_IMPORTED_MODULE_5_rxjs_Rx__["Observable"].forkJoin(this.loadLocaties(), this.loadKentekens())
             .subscribe(function () {
             _this.loadRit();
@@ -434,7 +435,6 @@ var RitAppFormComponent = (function () {
             }
             else {
                 // otherwise, download rit data and display in form.
-                _this.isRequesting = true;
                 _this._isNew = false;
                 _this._ritService.getRitById(id)
                     .subscribe(function (rit) {
@@ -733,7 +733,7 @@ module.exports = ""
 /***/ 823:
 /***/ (function(module, exports) {
 
-module.exports = ".row-bordered:after {\r\n    border-bottom: 1px solid #ccc;\r\n    content: \"\";\r\n    display: block;\r\n    margin: 5px 0 7px 0;\r\n}\r\nlabel {\r\n    font-weight: normal;\r\n}\r\nul {\r\n    list-style-type: none;\r\n    padding-left: 0;\r\n}\r\n.listitem label {\r\n    display: inline;\r\n    /*width: 80%;\r\n    width: -webkit-calc(100% - 55px);\r\n    width: -moz-calc(100% - 55px);\r\n    width: calc(100% - 55px);*/\r\n}\r\n/*.listitem a {\r\n    max-width: 20%;\r\n}*/"
+module.exports = ".row-bordered:after {\r\n    border-bottom: 1px solid #ccc;\r\n    content: \"\";\r\n    display: block;\r\n    margin: 5px 0 7px 0;\r\n}\r\nlabel {\r\n    font-weight: normal;\r\n}\r\nul {\r\n    list-style-type: none;\r\n    padding-left: 0;\r\n}\r\n.listitem label {\r\n    display: inline;\r\n}"
 
 /***/ }),
 
