@@ -462,6 +462,7 @@ var RitAppFormComponent = (function () {
     RitAppFormComponent.prototype.handleError = function (error) {
         this.isRequesting = false;
         console.error(error);
+        alert(error);
     };
     RitAppFormComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_2" /* Component */])({
@@ -522,6 +523,7 @@ var RitAppListComponent = (function () {
     RitAppListComponent.prototype.handleError = function (error) {
         this.isRequesting = false;
         console.error(error);
+        alert(error);
     };
     RitAppListComponent = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_2" /* Component */])({
