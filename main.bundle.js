@@ -427,6 +427,7 @@ var RitAppFormComponent = (function () {
             if (!id) {
                 // if id is NOT found, populate form with empty rit.
                 _this._isNew = true;
+                _this.isRequesting = false;
                 _this._rit = new __WEBPACK_IMPORTED_MODULE_1__rit__["a" /* Rit */]({
                     datum: new Date(),
                     tijdStart: new Date(),
