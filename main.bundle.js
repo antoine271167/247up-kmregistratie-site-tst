@@ -65,21 +65,22 @@ var RitService = (function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Headers */]({ "Content-Type": "application/json" });
         var options = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* RequestOptions */]({ headers: headers });
         return this._http.post(__WEBPACK_IMPORTED_MODULE_6__environments_environment__["a" /* environment */].serviceUrl + "/api/rit/update", rit, options)
-            .map(function (response) { return (response.json()); })
+            .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     RitService.prototype.getAllRitten = function () {
         return this._http.get(__WEBPACK_IMPORTED_MODULE_6__environments_environment__["a" /* environment */].serviceUrl + "/api/rit/getall")
-            .map(function (response) { return (response.json()); })
+            .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     RitService.prototype.getRitById = function (id) {
         return this._http.get(__WEBPACK_IMPORTED_MODULE_6__environments_environment__["a" /* environment */].serviceUrl + "/api/rit/getbyid/" + id)
-            .map(function (response) { return (response.json()); })
+            .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     RitService.prototype.handleError = function (error) {
-        console.error(error);
+        //console.error(error);
+        alert(error);
         return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error.json().error || "Server error");
     };
     RitService = __decorate([
@@ -181,17 +182,18 @@ var LookupService = (function () {
     // ReSharper disable once TsResolvedFromInaccessibleModule
     LookupService.prototype.getLocaties = function () {
         return this._http.get(__WEBPACK_IMPORTED_MODULE_6__environments_environment__["a" /* environment */].serviceUrl + "/api/lookup/getlocaties")
-            .map(function (response) { return (response.json()); })
+            .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     // ReSharper disable once TsResolvedFromInaccessibleModule
     LookupService.prototype.getKentekens = function () {
         return this._http.get(__WEBPACK_IMPORTED_MODULE_6__environments_environment__["a" /* environment */].serviceUrl + "/api/lookup/getkentekens")
-            .map(function (response) { return (response.json()); })
+            .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     LookupService.prototype.handleError = function (error) {
-        console.error(error);
+        alert(error);
+        //console.error(error);
         return __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__["Observable"].throw(error.json().error || "Server error");
     };
     LookupService = __decorate([
@@ -448,20 +450,16 @@ var RitAppFormComponent = (function () {
     RitAppFormComponent.prototype.loadLocaties = function () {
         var _this = this;
         return this._lookupService.getLocaties()
-            .do(function (locaties) {
-            _this._locaties = locaties;
-        });
+            .do(function (locaties) { _this._locaties = locaties; });
     };
     RitAppFormComponent.prototype.loadKentekens = function () {
         var _this = this;
         return this._lookupService.getKentekens()
-            .do(function (kentekens) {
-            _this._kentekens = kentekens;
-        });
+            .do(function (kentekens) { _this._kentekens = kentekens; });
     };
     RitAppFormComponent.prototype.handleError = function (error) {
         this.isRequesting = false;
-        console.error(error);
+        //console.error(error);
         alert(error);
     };
     RitAppFormComponent = __decorate([
@@ -522,7 +520,7 @@ var RitAppListComponent = (function () {
     });
     RitAppListComponent.prototype.handleError = function (error) {
         this.isRequesting = false;
-        console.error(error);
+        //console.error(error);
         alert(error);
     };
     RitAppListComponent = __decorate([
