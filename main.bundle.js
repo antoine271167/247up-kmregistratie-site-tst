@@ -844,7 +844,7 @@ module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\r\n    
 /***/ 832:
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!isAuthenticated\" id=\"{{googleLoginButtonId}}\"></div>\r\n<div *ngIf=\"isAuthenticated\">{{userDisplayName}}</div>"
+module.exports = "<div *ngIf=\"!isAuthenticated\" id=\"{{googleLoginButtonId}}\"></div>\r\n<p class=\"nav navbar-text\" *ngIf=\"isAuthenticated\">{{userDisplayName}}</p>"
 
 /***/ }),
 
