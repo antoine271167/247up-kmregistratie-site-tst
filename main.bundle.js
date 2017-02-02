@@ -614,20 +614,17 @@ var SigninComponent = (function () {
         this.googleLoginButtonId = "google-login-button";
         this.userAuthToken = null;
         this.userDisplayName = "empty";
-        // Triggered after a user successfully logs in using the Google external
-        // login provider.
+        this.isAuthenticated = false;
         this.onGoogleLoginSuccess = function (loggedInUser) {
             _this._zone.run(function () {
                 _this.userAuthToken = loggedInUser.getAuthResponse().id_token;
                 _this.userDisplayName = loggedInUser.getBasicProfile().getName();
+                _this.isAuthenticated = true;
             });
         };
         //
     }
-    // Angular hook that allows for interaction with elements inserted by the
-    // rendering of a view.
     SigninComponent.prototype.ngAfterViewInit = function () {
-        // Converts the Google login button stub to an actual button.
         gapi.signin2.render(this.googleLoginButtonId, {
             "onSuccess": this.onGoogleLoginSuccess,
             "scope": "profile",
@@ -847,7 +844,7 @@ module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\r\n    
 /***/ 832:
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"{{googleLoginButtonId}}\"></div>"
+module.exports = "<div *ngIf=\"!isAuthenticated\" id=\"{{googleLoginButtonId}}\"></div>\r\n<div *ngIf=\"isAuthenticated\" id=\"{{userDisplayName}}\"></div>"
 
 /***/ }),
 
