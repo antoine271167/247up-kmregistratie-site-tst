@@ -837,14 +837,14 @@ module.exports = "<spinner [isRunning]=\"isRequesting\"></spinner>\r\n<section>\
 /***/ 831:
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\r\n    <div class=\"container\">\r\n        <div class=\"navbar-header\">\r\n            <p class=\"nav navbar-text pull-right\" style=\"margin-bottom: initial !important; margin-right: 7px; margin-top: 7px;\">\r\n                <app-signin></app-signin>\r\n            </p>\r\n            <a class=\"navbar-brand\" href=\"#\">KM Registratie</a>\r\n        </div>\r\n    </div>\r\n</nav>\r\n<div class=\"container rittenapp\">\r\n    <router-outlet></router-outlet>\r\n</div>"
+module.exports = "<nav class=\"navbar navbar-default navbar-fixed-top\">\r\n    <div class=\"container\">\r\n        <div class=\"navbar-header\">\r\n            <p class=\"nav navbar-text pull-right\" style=\"margin-bottom: initial !important;\">\r\n                <app-signin></app-signin>\r\n            </p>\r\n            <a class=\"navbar-brand\" href=\"#\">KM Registratie</a>\r\n        </div>\r\n    </div>\r\n</nav>\r\n<div class=\"container rittenapp\">\r\n    <router-outlet></router-outlet>\r\n</div>"
 
 /***/ }),
 
 /***/ 832:
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"!isAuthenticated\" id=\"{{googleLoginButtonId}}\"></div>\r\n<p class=\"nav navbar-text\" *ngIf=\"isAuthenticated\">{{userDisplayName}}</p>"
+module.exports = "<div *ngIf=\"!isAuthenticated\" id=\"{{googleLoginButtonId}}\" style=\"margin-right: 7px; margin-top: 7px;\"></div>\r\n<p *ngIf=\"isAuthenticated\">{{userDisplayName}}</p>"
 
 /***/ }),
 
