@@ -111,10 +111,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var SigninService = (function () {
     function SigninService() {
-        this.isAuthenticated = false;
-        this.userAuthToken = null;
-        this.userDisplayName = null;
+        this._isAuthenticated = false;
+        this._userAuthToken = null;
+        this._userDisplayName = null;
     }
+    Object.defineProperty(SigninService.prototype, "isAuthenticated", {
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_0__angular_core__["N" /* isDevMode */] ? true : this._isAuthenticated;
+        },
+        set: function (value) {
+            this._isAuthenticated = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SigninService.prototype, "userAuthToken", {
+        get: function () {
+            return this._userAuthToken;
+        },
+        set: function (value) {
+            this._userAuthToken = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(SigninService.prototype, "userDisplayName", {
+        get: function () {
+            return __WEBPACK_IMPORTED_MODULE_0__angular_core__["N" /* isDevMode */] ? "John Doe" : this._userDisplayName;
+        },
+        set: function (value) {
+            this._userDisplayName = value;
+        },
+        enumerable: true,
+        configurable: true
+    });
     SigninService = __decorate([
         __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* Injectable */])(), 
         __metadata('design:paramtypes', [])
@@ -716,6 +746,8 @@ var SigninComponent = (function (_super) {
                 _this.signinService.userAuthToken = loggedInUser.getAuthResponse().id_token;
                 _this.signinService.userDisplayName = loggedInUser.getBasicProfile().getName();
                 _this.signinService.isAuthenticated = true;
+                console.log("userAuthToken: " + _this.signinService.userAuthToken);
+                console.log("userDisplayName: " + _this.signinService.userDisplayName);
             });
         };
     }
