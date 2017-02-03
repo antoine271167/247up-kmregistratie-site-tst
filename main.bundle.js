@@ -117,7 +117,7 @@ var SigninService = (function () {
     }
     Object.defineProperty(SigninService.prototype, "isAuthenticated", {
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_0__angular_core__["N" /* isDevMode */] ? true : this._isAuthenticated;
+            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["N" /* isDevMode */])() ? true : this._isAuthenticated;
         },
         set: function (value) {
             this._isAuthenticated = value;
@@ -137,7 +137,7 @@ var SigninService = (function () {
     });
     Object.defineProperty(SigninService.prototype, "userDisplayName", {
         get: function () {
-            return __WEBPACK_IMPORTED_MODULE_0__angular_core__["N" /* isDevMode */] ? "John Doe" : this._userDisplayName;
+            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["N" /* isDevMode */])() ? "John Doe" : this._userDisplayName;
         },
         set: function (value) {
             this._userDisplayName = value;
