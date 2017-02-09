@@ -655,9 +655,9 @@ var RitAppListComponent = (function (_super) {
     }
     RitAppListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.isRequesting = true;
         this._subscription = this.signinService.isAuth$.subscribe(function (isAuth) {
             if (isAuth) {
+                _this.isRequesting = true;
                 _this._ritService.getAllRitten()
                     .subscribe(function (ritten) {
                     _this._ritten = ritten;
