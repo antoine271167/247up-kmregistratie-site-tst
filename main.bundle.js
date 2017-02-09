@@ -657,11 +657,13 @@ var RitAppListComponent = (function (_super) {
         var _this = this;
         this.isRequesting = true;
         this._subscription = this.signinService.isAuth$.subscribe(function (isAuth) {
-            _this._ritService.getAllRitten()
-                .subscribe(function (ritten) {
-                _this._ritten = ritten;
-                _this.isRequesting = false;
-            }, function (error) { return _this.handleError(error); });
+            if (isAuth) {
+                _this._ritService.getAllRitten()
+                    .subscribe(function (ritten) {
+                    _this._ritten = ritten;
+                    _this.isRequesting = false;
+                }, function (error) { return _this.handleError(error); });
+            }
         });
     };
     RitAppListComponent.prototype.ngOnDestroy = function () {
