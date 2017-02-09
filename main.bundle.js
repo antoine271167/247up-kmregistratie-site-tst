@@ -22,11 +22,13 @@ module.exports = __webpack_require__(519);
 
 /***/ }),
 
-/***/ 124:
+/***/ 125:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SigninService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -38,12 +40,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
 var SigninService = (function () {
     function SigninService() {
+        this._isAuth = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](false); // false is your initial value
+        this.isAuth$ = this._isAuth.asObservable();
         this._isAuthenticated = false;
         this._userAuthToken = null;
         this._userDisplayName = null;
     }
+    Object.defineProperty(SigninService.prototype, "isAuth", {
+        get: function () {
+            return this._isAuth.getValue();
+        },
+        set: function (value) {
+            this._isAuth.next(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(SigninService.prototype, "isAuthenticated", {
         get: function () {
             return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["N" /* isDevMode */])() ? true : this._isAuthenticated;
@@ -102,7 +117,7 @@ var SigninService = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__environments_environment__ = __webpack_require__(253);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__signin_service__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__signin_service__ = __webpack_require__(125);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RitService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -274,7 +289,7 @@ var BaseComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__ = __webpack_require__(134);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__environments_environment__ = __webpack_require__(253);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__signin_service__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__signin_service__ = __webpack_require__(125);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LookupService; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -610,7 +625,7 @@ var RitAppFormComponent = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rit_service__ = __webpack_require__(252);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_component__ = __webpack_require__(398);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__signin_service__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__signin_service__ = __webpack_require__(125);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RitAppListComponent; });
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -641,11 +656,16 @@ var RitAppListComponent = (function (_super) {
     RitAppListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.isRequesting = true;
-        this._ritService.getAllRitten()
-            .subscribe(function (ritten) {
-            _this._ritten = ritten;
-            _this.isRequesting = false;
-        }, function (error) { return _this.handleError(error); });
+        this._subscription = this.signinService.isAuth$.subscribe(function (isAuth) {
+            _this._ritService.getAllRitten()
+                .subscribe(function (ritten) {
+                _this._ritten = ritten;
+                _this.isRequesting = false;
+            }, function (error) { return _this.handleError(error); });
+        });
+    };
+    RitAppListComponent.prototype.ngOnDestroy = function () {
+        this._subscription.unsubscribe();
     };
     Object.defineProperty(RitAppListComponent.prototype, "ritten", {
         get: function () {
@@ -681,7 +701,7 @@ var RitAppListComponent = (function (_super) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__rit_service__ = __webpack_require__(252);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lookup_service__ = __webpack_require__(399);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__signin_service__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__signin_service__ = __webpack_require__(125);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RitAppComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -735,7 +755,7 @@ var Rit = (function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__signin_service__ = __webpack_require__(124);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__signin_service__ = __webpack_require__(125);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__base_component__ = __webpack_require__(398);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SigninComponent; });
 var __extends = (this && this.__extends) || function (d, b) {
@@ -767,6 +787,7 @@ var SigninComponent = (function (_super) {
                 _this.signinService.userAuthToken = loggedInUser.getAuthResponse().id_token;
                 _this.signinService.userDisplayName = loggedInUser.getBasicProfile().getName();
                 _this.signinService.isAuthenticated = true;
+                _this.signinService.isAuth = true;
                 console.log("userAuthToken: " + _this.signinService.userAuthToken);
                 console.log("userDisplayName: " + _this.signinService.userDisplayName);
             });
