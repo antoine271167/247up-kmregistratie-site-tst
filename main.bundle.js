@@ -43,28 +43,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var SigninService = (function () {
     function SigninService() {
-        this._isAuth = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](false); // false is your initial value
-        this.isAuth$ = this._isAuth.asObservable();
-        this._isAuthenticated = false;
+        this._isAuthenticated = new __WEBPACK_IMPORTED_MODULE_1_rxjs_BehaviorSubject__["BehaviorSubject"](false); // false is your initial value
+        this.isAuthenticated$ = this._isAuthenticated.asObservable();
         this._userAuthToken = null;
         this._userDisplayName = null;
     }
-    Object.defineProperty(SigninService.prototype, "isAuth", {
-        get: function () {
-            return this._isAuth.getValue();
-        },
-        set: function (value) {
-            this._isAuth.next(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
     Object.defineProperty(SigninService.prototype, "isAuthenticated", {
         get: function () {
-            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["N" /* isDevMode */])() ? true : this._isAuthenticated;
+            return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["N" /* isDevMode */])() ? true : this._isAuthenticated.getValue();
         },
         set: function (value) {
-            this._isAuthenticated = value;
+            this._isAuthenticated.next(value);
         },
         enumerable: true,
         configurable: true
@@ -655,8 +644,8 @@ var RitAppListComponent = (function (_super) {
     }
     RitAppListComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this._subscription = this.signinService.isAuth$.subscribe(function (isAuth) {
-            if (isAuth) {
+        this._subscription = this.signinService.isAuthenticated$.subscribe(function (isAuthenticated) {
+            if (isAuthenticated) {
                 _this.isRequesting = true;
                 _this._ritService.getAllRitten()
                     .subscribe(function (ritten) {
@@ -789,9 +778,8 @@ var SigninComponent = (function (_super) {
                 _this.signinService.userAuthToken = loggedInUser.getAuthResponse().id_token;
                 _this.signinService.userDisplayName = loggedInUser.getBasicProfile().getName();
                 _this.signinService.isAuthenticated = true;
-                _this.signinService.isAuth = true;
-                console.log("userAuthToken: " + _this.signinService.userAuthToken);
-                console.log("userDisplayName: " + _this.signinService.userDisplayName);
+                //console.log(`userAuthToken: ${this.signinService.userAuthToken}`);
+                //console.log(`userDisplayName: ${this.signinService.userDisplayName}`);
             });
         };
     }
