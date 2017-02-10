@@ -778,8 +778,8 @@ var SigninComponent = (function (_super) {
                 _this.signinService.userAuthToken = loggedInUser.getAuthResponse().id_token;
                 _this.signinService.userDisplayName = loggedInUser.getBasicProfile().getName();
                 _this.signinService.isAuthenticated = true;
-                //console.log(`userAuthToken: ${this.signinService.userAuthToken}`);
-                //console.log(`userDisplayName: ${this.signinService.userDisplayName}`);
+                console.log("userAuthToken: " + _this.signinService.userAuthToken);
+                console.log("userDisplayName: " + _this.signinService.userDisplayName);
             });
         };
     }
